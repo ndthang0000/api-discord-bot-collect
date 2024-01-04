@@ -7,14 +7,12 @@ const authApiKey = require('../../middlewares/auth.api.key');
 
 const router = express.Router();
 
-router.get('/comments',validate(commentValidation.getComments),commentController.getListComment)
-router.post('/comment',validate(commentValidation.createNewComment),authApiKey,commentController.createNewComment)
-router.put('/comment/:commentId',validate(commentValidation.changeStatusComment),commentController.changeStatusComment)
-router.post('/generate-api-token',validate(commentValidation.generateTApiToken),commentController.generateTApiToken)
+router.get('/comments', validate(commentValidation.getComments), commentController.getListComment);
+router.post('/comment', validate(commentValidation.createNewComment), authApiKey, commentController.createNewComment);
+router.put('/comment/:commentId', validate(commentValidation.changeStatusComment), commentController.changeStatusComment);
+router.post('/generate-api-token', validate(commentValidation.generateTApiToken), commentController.generateTApiToken);
 
 module.exports = router;
-
-
 
 /**
  * @swagger
@@ -51,7 +49,7 @@ module.exports = router;
  *                 description: User discord Id
  *               discordUsername:
  *                 type: string
- *                 description: Username discord 
+ *                 description: Username discord
  *               discordChanelId:
  *                  type: string
  *                  description: Channel discord Id
@@ -71,7 +69,7 @@ module.exports = router;
  *         $ref: '#/components/responses/Unauthorized'
  *       "403":
  *         $ref: '#/components/responses/Forbidden'
- * 
+ *
  * /comments:
  *   get:
  *     summary: Get paginate comment
@@ -120,7 +118,7 @@ module.exports = router;
  *           minimum: 1
  *           default: 1
  *         description: Page number
- *             
+ *
  *     responses:
  *       "200":
  *         description: OK
@@ -181,7 +179,7 @@ module.exports = router;
  *             schema:
  *               type: object
  *               properties:
- *                 
+ *
  *                $ref: '#/components/schemas/Comment'
  *       "401":
  *         $ref: '#/components/responses/Unauthorized'
@@ -225,4 +223,4 @@ module.exports = router;
  *         $ref: '#/components/responses/Unauthorized'
  *       "403":
  *         $ref: '#/components/responses/Forbidden'
-*/
+ */

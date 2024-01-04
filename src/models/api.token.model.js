@@ -8,7 +8,7 @@ const ApiTokenSchema = mongoose.Schema(
       required: true,
     },
     name: {
-      type: String
+      type: String,
     },
   },
   {

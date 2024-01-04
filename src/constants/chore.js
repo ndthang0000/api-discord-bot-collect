@@ -1,8 +1,8 @@
 const STATUS_COMMENT = {
   NEW: 'new',
-  RESOLVED: "resolved"
-}
+  RESOLVED: 'resolved',
+};
 
 module.exports = {
-  STATUS_COMMENT
-}
+  STATUS_COMMENT,
+};

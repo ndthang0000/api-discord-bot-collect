@@ -29,11 +29,11 @@ const commentSchema = mongoose.Schema(
     status: {
       type: String,
       default: STATUS_COMMENT.NEW,
-      enum: Object.values(STATUS_COMMENT)
+      enum: Object.values(STATUS_COMMENT),
     },
     timeUpdateStatus: {
-      type: Date
-    }
+      type: Date,
+    },
   },
   {
     timestamps: true,
@@ -43,7 +43,6 @@ const commentSchema = mongoose.Schema(
 // add plugin that converts mongoose to json
 commentSchema.plugin(toJSON);
 commentSchema.plugin(paginate);
-
 
 const comment = mongoose.model('comment', commentSchema);
 

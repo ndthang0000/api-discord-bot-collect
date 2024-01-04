@@ -20,14 +20,14 @@ router
 module.exports = router;
 
 /**
- * 
+ *
  * tags:
  *   name: Users
  *   description: User management and retrieval
  */
 
 /**
- * 
+ *
  * /users:
  *   post:
  *     summary: Create a user

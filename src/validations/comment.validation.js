@@ -4,7 +4,7 @@ const { objectId } = require('./custom.validation');
 
 const getComments = {
   query: Joi.object().keys({
-    sortBy: Joi.string().valid('createdAt:desc','createdAt:asc','timeUpdateStatus:desc'),
+    sortBy: Joi.string().valid('createdAt:desc', 'createdAt:asc', 'timeUpdateStatus:desc'),
     limit: Joi.number().integer().default(10),
     page: Joi.number().integer().default(1),
     status: Joi.string().valid(STATUS_COMMENT.NEW, STATUS_COMMENT.RESOLVED),
@@ -28,13 +28,13 @@ const changeStatusComment = {
     commentId: Joi.string().custom(objectId),
   }),
   body: Joi.object().keys({
-    status: Joi.string().required().valid(STATUS_COMMENT.NEW,STATUS_COMMENT.RESOLVED),
+    status: Joi.string().required().valid(STATUS_COMMENT.NEW, STATUS_COMMENT.RESOLVED),
   }),
 };
 
 const generateTApiToken = {
   body: Joi.object().keys({
-    name: Joi.string().required()
+    name: Joi.string().required(),
   }),
 };
 
@@ -42,5 +42,5 @@ module.exports = {
   createNewComment,
   getComments,
   changeStatusComment,
-  generateTApiToken
-}
+  generateTApiToken,
+};

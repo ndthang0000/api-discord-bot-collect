@@ -9,7 +9,7 @@ const defaultRoutes = [
   {
     path: '/',
     route: mainRoute,
-  }
+  },
 ];
 
 const devRoutes = [
