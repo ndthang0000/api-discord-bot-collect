@@ -1,5 +1,33 @@
 components:
   schemas:
+    Comment:
+      type: object
+      properties:
+        id:
+          type: string
+        comment:
+          type: string
+        discordUserId:
+          type: string
+        discordUsername:
+          type: string
+        status:
+          type: string
+          enum: [new, resolved]
+        discordChanelId:
+          type: string
+        timeUpdateStatus:
+          type: string
+          format: date-time
+      example:
+        id: 5ebac534954b54139806c112
+        comment: 'The game so good, thank for publisher'
+        discordUserId: "659031583033917470"
+        discordUsername: ndthang0000
+        status: new
+        discordChanelId: "1192299961824579634"
+        timeUpdateStatus: '2024-01-10T16:18:04.793Z'
+
     User:
       type: object
       properties:
@@ -46,7 +74,7 @@ components:
           type: number
         message:
           type: string
-
+    
   responses:
     DuplicateEmail:
       description: Email already taken
