@@ -32,8 +32,15 @@ const changeStatusComment = {
   }),
 };
 
+const generateTApiToken = {
+  body: Joi.object().keys({
+    name: Joi.string().required()
+  }),
+};
+
 module.exports = {
   createNewComment,
   getComments,
-  changeStatusComment
+  changeStatusComment,
+  generateTApiToken
 }

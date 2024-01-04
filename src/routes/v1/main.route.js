@@ -3,12 +3,14 @@ const auth = require('../../middlewares/auth');
 const validate = require('../../middlewares/validate');
 const commentValidation = require('../../validations/comment.validation');
 const commentController = require('../../controllers/comment.controller');
+const authApiKey = require('../../middlewares/auth.api.key');
 
 const router = express.Router();
 
 router.get('/comments',validate(commentValidation.getComments),commentController.getListComment)
-router.post('/comment',validate(commentValidation.createNewComment),commentController.createNewComment)
-router.put('/comment/:commentId',/*validate(commentValidation.changeStatusComment),*/commentController.changeStatusComment)
+router.post('/comment',validate(commentValidation.createNewComment),authApiKey,commentController.createNewComment)
+router.put('/comment/:commentId',validate(commentValidation.changeStatusComment),commentController.changeStatusComment)
+router.post('/generate-api-token',validate(commentValidation.generateTApiToken),commentController.generateTApiToken)
 
 module.exports = router;
 
@@ -23,6 +25,12 @@ module.exports = router;
  *     tags: [Comments]
  *     security:
  *       - bearerAuth: []
+ *     parameters:
+ *       - in: header
+ *         name: x-api-key
+ *         schema:
+ *           type: string
+ *         description: Api key
  *     requestBody:
  *       required: true
  *       content:
@@ -179,5 +187,42 @@ module.exports = router;
  *         $ref: '#/components/responses/Unauthorized'
  *       "403":
  *         $ref: '#/components/responses/Forbidden'
- * 
+ * /generate-api-token:
+ *   post:
+ *     summary: Generate API key to attach in header request for authenticate
+ *     description: Generate API key to attach in header request for authenticate
+ *     tags: [Comments]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: Your name
+ *             example:
+ *               name: Your name
+ *     responses:
+ *       "201":
+ *         description: Created
+ *         content:
+ *           application/json:
+ *             schema:
+ *                type: object
+ *                properties:
+ *                  status:
+ *                    type: boolean
+ *                  data:
+ *                    type: string
+ *                example:
+ *                  status: true
+ *                  data: "Sdfsfsdfsf3423423432"
+ *       "401":
+ *         $ref: '#/components/responses/Unauthorized'
+ *       "403":
+ *         $ref: '#/components/responses/Forbidden'
 */
