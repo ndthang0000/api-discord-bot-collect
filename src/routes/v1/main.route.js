@@ -9,8 +9,8 @@ const router = express.Router();
 
 router.get('/comments', validate(commentValidation.getComments), commentController.getListComment);
 router.post('/comment', validate(commentValidation.createNewComment), authApiKey, commentController.createNewComment);
-router.put('/comment/:commentId', validate(commentValidation.changeStatusComment), commentController.changeStatusComment);
-router.post('/generate-api-token', validate(commentValidation.generateTApiToken), commentController.generateTApiToken);
+router.put('/comment/:commentId', validate(commentValidation.changeStatusComment),auth(), commentController.changeStatusComment);
+router.post('/generate-api-token', validate(commentValidation.generateTApiToken),auth(), commentController.generateTApiToken);
 
 module.exports = router;
 
@@ -18,11 +18,9 @@ module.exports = router;
  * @swagger
  * /comment:
  *   post:
- *     summary: Collect user feedback
- *     description: Only bot discord can create a comment using X-API-KEY in headers request
+ *     summary: Bot discord collect user feedback 
+ *     description: Only bot discord can create a comment using X-API-KEY in headers request, get x-api-key from api generate-api-key below
  *     tags: [Comments]
- *     security:
- *       - bearerAuth: []
  *     parameters:
  *       - in: header
  *         name: x-api-key
@@ -146,8 +144,10 @@ module.exports = router;
  * /comment/{commentId}:
  *   put:
  *     summary: Change Status of comment
- *     description: Only bot discord can create a comment using X-API-KEY in headers request
+ *     description: Admin can change the status of comment
  *     tags: [Comments]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: commentId
@@ -190,6 +190,8 @@ module.exports = router;
  *     summary: Generate API key to attach in header request for authenticate
  *     description: Generate API key to attach in header request for authenticate
  *     tags: [Comments]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:

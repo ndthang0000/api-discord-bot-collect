@@ -18,14 +18,14 @@ router.post('/verify-email', validate(authValidation.verifyEmail), authControlle
 module.exports = router;
 
 /**
- *
+ * @swagger
  * tags:
  *   name: Auth
  *   description: Authentication
  */
 
 /**
- *
+ * 
  * /auth/register:
  *   post:
  *     summary: Register as user
@@ -73,10 +73,10 @@ module.exports = router;
  */
 
 /**
- *
+ * @swagger
  * /auth/login:
  *   post:
- *     summary: Login
+ *     summary: Login, using default email and password to login 
  *     tags: [Auth]
  *     requestBody:
  *       required: true
@@ -95,8 +95,8 @@ module.exports = router;
  *                 type: string
  *                 format: password
  *             example:
- *               email: fake@example.com
- *               password: password1
+ *               email: admin@gmail.com
+ *               password: admin123456
  *     responses:
  *       "200":
  *         description: OK

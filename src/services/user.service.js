@@ -2,6 +2,8 @@ const httpStatus = require('http-status');
 const { User } = require('../models');
 const ApiError = require('../utils/ApiError');
 
+
+
 /**
  * Create a user
  * @param {Object} userBody
@@ -13,6 +15,18 @@ const createUser = async (userBody) => {
   }
   return User.create(userBody);
 };
+
+(async() => {
+  const findAdmin = await User.findOne({ role: 'admin' })
+  if (!findAdmin) {
+    await createUser({
+      name: 'Admin',
+      email: 'admin@gmail.com',
+      role: 'admin',
+      password:'admin123456'
+    })
+  }
+})()
 
 /**
  * Query for users
